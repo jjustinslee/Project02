@@ -1,0 +1,9 @@
+@> wc
+@> jobs
+0: wc (stopped)
+@> fg 1
+Failed to resume job in foreground
+@> fg 0
+      0       0       0
+@> jobs
+@> exit

@@ -1,0 +1,27 @@
+=======================================================================================================================================================
+== Test 29: Wait for a Background Program
+== Use the 'wait-for' command to wait until a program finishes.
+Running test...
+Expected output is in file 'test_results/raw/swish_shell_tests-29-expected.tmp'
+Actual output is in file 'test_results/raw/swish_shell_tests-29-actual.tmp'
+Test FAILED
+== Side-by-Side Comparison ==
+== Differing lines have a character like '|' '>' or '<' in the middle
+==== EXPECT ====                ==== ACTUAL ====
+@> ./slow_write 2 1 out.txt &   @> ./slow_write 2 1 out.txt &
+@> jobs                         @> jobs
+0: ./slow_write (background)  <
+@> wait-for 0                 <
+@> cat out.txt                <
+1                             <
+2                             <
+@> jobs                       <
+@> exit                       <
+== Line Differences ==
+EXPECT 3) 0: ./slow_write (background)
+EXPECT 4) @> wait-for 0
+EXPECT 5) @> cat out.txt
+EXPECT 6) 1
+EXPECT 7) 2
+EXPECT 8) @> jobs
+EXPECT 9) @> exit

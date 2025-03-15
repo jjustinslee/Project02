@@ -1,0 +1,5 @@
+@> wc -c -m -l -L -w < test_cases/resources/gatsby.txt
+wc: '<': No such file or directory
+  6772  51187 299452 299452     74 test_cases/resources/gatsby.txt
+  6772  51187 299452 299452     74 total
+@> exit

@@ -1,0 +1,15 @@
+==67009== Memcheck, a memory error detector
+==67009== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+==67009== Using Valgrind-3.18.1 and LibVEX; rerun with -h for copyright info
+==67009== Command: ./swish
+==67009== Parent PID: 67007
+==67009== 
+==67009== 
+==67009== HEAP SUMMARY:
+==67009==     in use at exit: 0 bytes in 0 blocks
+==67009==   total heap usage: 4 allocs, 4 frees, 2,085 bytes allocated
+==67009== 
+==67009== All heap blocks were freed -- no leaks are possible
+==67009== 
+==67009== For lists of detected and suppressed errors, rerun with: -s
+==67009== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)

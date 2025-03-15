@@ -1,0 +1,8 @@
+@> bg 0
+Failed to resume job in background
+@> wc
+@> bg 1
+Failed to resume job in background
+@> fg 0
+      0       0       0
+@> exit

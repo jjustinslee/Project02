@@ -1,0 +1,27 @@
+=======================================================================================================================================================
+== Test 27: Run Simple Program in Background
+== Run a simple command in the background and check that it completes.
+Running test...
+Expected output is in file 'test_results/raw/swish_shell_tests-27-expected.tmp'
+Actual output is in file 'test_results/raw/swish_shell_tests-27-actual.tmp'
+Test FAILED
+== Side-by-Side Comparison ==
+== Differing lines have a character like '|' '>' or '<' in the middle
+==== EXPECT ====                ==== ACTUAL ====
+@> ./slow_write 5 0 out.txt &   @> ./slow_write 5 0 out.txt &
+@> sleep 1                      @> sleep 1
+@> cat out.txt                <
+1                             <
+2                             <
+3                             <
+4                             <
+5                             <
+@> exit                       <
+== Line Differences ==
+EXPECT 3) @> cat out.txt
+EXPECT 4) 1
+EXPECT 5) 2
+EXPECT 6) 3
+EXPECT 7) 4
+EXPECT 8) 5
+EXPECT 9) @> exit

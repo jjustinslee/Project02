@@ -1,0 +1,24 @@
+=======================================================================================================================================================
+== Test 24: Multiple Out of Bounds Resume Index
+== Tries to resume several non-existent jobs with the 'fg' command.
+Running test...
+Expected output is in file 'test_results/raw/swish_shell_tests-24-expected.tmp'
+Actual output is in file 'test_results/raw/swish_shell_tests-24-actual.tmp'
+Test FAILED
+== Side-by-Side Comparison ==
+== Differing lines have a character like '|' '>' or '<' in the middle
+==== EXPECT ====                     ==== ACTUAL ====
+@> fg 4                              @> fg 4
+Job index out of bounds            <
+Failed to resume job in foreground   Failed to resume job in foreground
+@> fg 8                              @> fg 8
+Job index out of bounds            <
+Failed to resume job in foreground   Failed to resume job in foreground
+@> fg 15                             @> fg 15
+Job index out of bounds            <
+Failed to resume job in foreground   Failed to resume job in foreground
+@> exit                              @> exit
+== Line Differences ==
+EXPECT  2) Job index out of bounds
+EXPECT  5) Job index out of bounds
+EXPECT  8) Job index out of bounds

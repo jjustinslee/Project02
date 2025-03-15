@@ -1,0 +1,7 @@
+@> fg 4
+Failed to resume job in foreground
+@> fg 8
+Failed to resume job in foreground
+@> fg 15
+Failed to resume job in foreground
+@> exit

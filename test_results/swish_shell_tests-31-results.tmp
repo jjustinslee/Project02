@@ -1,0 +1,24 @@
+=======================================================================================================================================================
+== Test 31: Attempt to Wait for Stopped Job
+== Start a program, suspend it, then attempt to wait for it. Check if the shell
+== prints out an appropriate error message.
+Running test...
+Expected output is in file 'test_results/raw/swish_shell_tests-31-expected.tmp'
+Actual output is in file 'test_results/raw/swish_shell_tests-31-actual.tmp'
+Test FAILED
+== Side-by-Side Comparison ==
+== Differing lines have a character like '|' '>' or '<' in the middle
+==== EXPECT ====                                          ==== ACTUAL ====
+@> wc                                                     @> wc
+@> jobs                                                   @> jobs
+0: wc (stopped)                                           0: wc (stopped)
+@> wait-for 0                                             @> wait-for 0
+Job index is for stopped process not background process <
+Failed to wait for background job                         Failed to wait for background job
+@> jobs                                                   @> jobs
+0: wc (stopped)                                           0: wc (stopped)
+@> fg 0                                                   @> fg 0
+      0       0       0                                         0       0       0
+@> exit                                                   @> exit
+== Line Differences ==
+EXPECT  5) Job index is for stopped process not background process

@@ -1,0 +1,2 @@
+@> ./slow_write 5 0 out.txt &
+@> sleep 1
