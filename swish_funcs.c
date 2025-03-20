@@ -35,7 +35,7 @@ int run_command(strvec_t *tokens) {
   }
   args[i] = NULL;
 
-  // Handle output redirection
+  // Handle output redirection (existing code)
   for (i = 0; i < tokens->length; i++) {
     if (strcmp(tokens->data[i], ">") == 0 ||
         strcmp(tokens->data[i], ">>") == 0) {
@@ -49,6 +49,21 @@ int run_command(strvec_t *tokens) {
       dup2(fd, STDOUT_FILENO);
       close(fd);
       args[i] = NULL;
+      break;
+    }
+  }
+
+  // Handle input redirection: If '<' is found, redirect input
+  for (i = 0; i < tokens->length; i++) {
+    if (strcmp(tokens->data[i], "<") == 0) {
+      int fd = open(tokens->data[i + 1], O_RDONLY);
+      if (fd < 0) {
+        perror("open");
+        return -1;
+      }
+      dup2(fd, STDIN_FILENO); // Redirect standard input to file
+      close(fd);
+      args[i] = NULL; // Nullify argument after redirection
       break;
     }
   }
