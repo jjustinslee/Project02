@@ -140,7 +140,7 @@ int main(int argc, char **argv) {
         run_command(&tokens);
 
         // Step 2: If execvp() fails, print error and exit child process
-        perror("execvp");
+        perror("exec");
         exit(1);
       } else if (pid > 0) {
         // Parent process: Handle foreground and background execution

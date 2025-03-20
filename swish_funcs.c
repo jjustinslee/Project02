@@ -25,7 +25,6 @@ int tokenize(char *s, strvec_t *tokens) {
     token = strtok(NULL, " ");
   }
   return 0;
-  return 0;
 }
 
 int run_command(strvec_t *tokens) {
@@ -67,7 +66,6 @@ int run_command(strvec_t *tokens) {
   setpgid(pid, pid);
 
   execvp(args[0], args);
-  perror("execvp");
   return -1;
 }
 
