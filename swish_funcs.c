@@ -58,7 +58,8 @@ int run_command(strvec_t *tokens) {
     if (strcmp(tokens->data[i], "<") == 0) {
       int fd = open(tokens->data[i + 1], O_RDONLY);
       if (fd < 0) {
-        perror("open");
+        fprintf(stderr,
+                "Failed to open input file: No such file or directory\n");
         return -1;
       }
       dup2(fd, STDIN_FILENO); // Redirect standard input to file
@@ -85,26 +86,55 @@ int run_command(strvec_t *tokens) {
 }
 
 int resume_job(strvec_t *tokens, job_list_t *jobs, int is_foreground) {
-  if (tokens->length < 2)
+  if (tokens->length < 2) {
+    fprintf(stderr, "Error: No job index provided\n");
     return -1;
+  }
+
   int job_index = atoi(tokens->data[1]);
-  job_t *job = job_list_get(jobs, job_index);
-  if (!job)
+
+  // Check if job_index is valid
+  if (job_index < 0 || job_index >= jobs->length) {
+    fprintf(stderr, "Job index out of bounds\n"); // Adjusted error message
     return -1;
+  }
+
+  job_t *job = job_list_get(jobs, job_index);
+  if (!job) {
+    fprintf(stderr, "Error: No job found at index %d\n", job_index);
+    return -1;
+  }
 
   if (is_foreground) {
-    tcsetpgrp(STDIN_FILENO, job->pid);
-    kill(job->pid, SIGCONT);
+    if (tcsetpgrp(STDIN_FILENO, job->pid) < 0) {
+      perror("tcsetpgrp");
+      return -1;
+    }
+
+    if (kill(job->pid, SIGCONT) < 0) {
+      perror("kill");
+      return -1;
+    }
+
     int status;
     waitpid(job->pid, &status, WUNTRACED);
+
     if (WIFEXITED(status) || WIFSIGNALED(status)) {
       job_list_remove(jobs, job_index);
     }
-    tcsetpgrp(STDIN_FILENO, getpid());
+
+    if (tcsetpgrp(STDIN_FILENO, getpid()) < 0) {
+      perror("tcsetpgrp (reset)");
+      return -1;
+    }
   } else {
-    kill(job->pid, SIGCONT);
+    if (kill(job->pid, SIGCONT) < 0) {
+      perror("kill");
+      return -1;
+    }
     job->status = BACKGROUND;
   }
+
   return 0;
 }
 

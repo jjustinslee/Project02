@@ -4,19 +4,4 @@
 Running test...
 Expected output is in file 'test_results/raw/swish_shell_tests-25-expected.tmp'
 Actual output is in file 'test_results/raw/swish_shell_tests-25-actual.tmp'
-Test FAILED
-== Side-by-Side Comparison ==
-== Differing lines have a character like '|' '>' or '<' in the middle
-==== EXPECT ====                     ==== ACTUAL ====
-@> wc                                @> wc
-@> jobs                              @> jobs
-0: wc (stopped)                      0: wc (stopped)
-@> fg 1                              @> fg 1
-Job index out of bounds            <
-Failed to resume job in foreground   Failed to resume job in foreground
-@> fg 0                              @> fg 0
-      0       0       0                    0       0       0
-@> jobs                              @> jobs
-@> exit                              @> exit
-== Line Differences ==
-EXPECT  5) Job index out of bounds
+Test PASSED

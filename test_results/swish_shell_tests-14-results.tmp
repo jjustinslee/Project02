@@ -10,10 +10,8 @@ Test FAILED
 == Differing lines have a character like '|' '>' or '<' in the middle
 ==== EXPECT ====                                       ==== ACTUAL ====
 @> wc < this_file_does_not_exist.txt                   @> wc < this_file_does_not_exist.txt
-Failed to open input file: No such file or directory | open: No such file or directory
+Failed to open input file: No such file or directory   Failed to open input file: No such file or directory
                                                      > exec: No such file or directory
 @> exit                                                @> exit
 == Line Differences ==
-EXPECT 2) Failed to open input file: No such file or directory
-ACTUAL 2) open: No such file or directory
 ACTUAL 3) exec: No such file or directory
